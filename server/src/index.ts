@@ -2,8 +2,11 @@ import * as express from 'express';
 import indexRouter from './routes/index';
 
 const createError = require('http-errors');
+var cors = require('cors');
 const server = express();
 const port = 8080;
+
+server.use(cors()); //allow cors for every browser for now TODO: Fix CORS for specific URL's in future...
 
 server.use(express.json());
 server.use('/api', indexRouter);

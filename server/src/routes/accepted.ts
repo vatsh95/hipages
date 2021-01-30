@@ -6,7 +6,7 @@ router.get('/', async (req, res, next) => {
     let respData: any = await db.executeMySqlQuery(`
         SELECT * FROM hipages.jobs
         LEFT JOIN hipages.categories ON hipages.categories.id = hipages.jobs.category_id
-        LEFT JOIN hipages.suburbs ON hipages.jobs.suburb_id
+        LEFT JOIN hipages.suburbs ON hipages.suburbs.id = hipages.jobs.suburb_id
         WHERE hipages.jobs.status = "accepted";
     `);
     if (
