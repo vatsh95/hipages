@@ -7,13 +7,13 @@ services:
       NODE_ENV: development
     image: node:10.15-alpine
     ports:
-      - "3000:3000"
+      - "3600:3000"
     volumes:
       - ./ui:/opt/ui
     working_dir: /opt/ui
 
   server:
-    entrypoint: ["npm", "start"]
+    entrypoint: ["npm", "run", "start:dev"]
     environment:
       NODE_ENV: development
     image: node:10.15-alpine
