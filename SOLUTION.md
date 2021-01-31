@@ -26,4 +26,3 @@ Code is written in basic Node/Express API Patterns with routes based folder stru
 * Then Implement a JWT based login system in frontend and backend to make this API stateless
 * And Then show Leads Properly for a given logged in user.
 * Use More Typed functions by creating proper interfaces with object property types to pass data around functions (** any type is used in many places currently which can be further optimised)
-
