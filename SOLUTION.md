@@ -1,6 +1,3 @@
-Your Solution Documentation
-===========================
-
 ## Getting Started
 Everthing is same as per the inital ReadMe files boilerplate, only frontend UI port is changed to 3600.
 So, to test this quickly install docker and then,
