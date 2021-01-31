@@ -6,7 +6,7 @@ Everthing is same as per the inital ReadMe files boilerplate, only frontend UI p
 So, to test this quickly install docker and then,
 * Go to server and ui folders to install their respictive NPM dependecies
 * Then, From the root of the project, run `docker-compose up -d`
-* You should now have the UI running at http://localhost:3600 and the server running at http://localhost:8080
+* You should now have the UI running at http://localhost:3600 and the server running at http://localhost:8080/api
 
 To Quickly finish this task some compromises were made and as this task was small some things were skipped.
 
