@@ -8,8 +8,12 @@ import {
 import Accepted from './pages/Accepted';
 import Invited from './pages/Invited';
 
+import "typeface-lato";
 import './App.css';
 
+/**
+ * Master App Component
+ */
 class App extends Component {
   render() {
     return (

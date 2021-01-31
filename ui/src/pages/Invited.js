@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import ApiEndPoint from '../utils/Axios';
-import InvitedJobCards from '../components/jobCards/InvitedJobCards';
+import InvitedLeadCards from '../components/leadCards/InvitedLeadCards';
 
+/**
+ * A Functional Component Loading and listing all Invited Leads and updating leads status
+ */
 const Invited = (props) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [data, setData] = useState([]);
+    const [leadData, setLeadData] = useState([]);
 
     useEffect(() => {
+        refreshLeads();
+    }, []);
+
+    const refreshLeads = () => {
         setLoading(true);
         ApiEndPoint.get('/invited')
             .then((res) => {
@@ -17,18 +24,41 @@ const Invited = (props) => {
                     && res.data.success === true
                 ) {
                     setLoading(false);
-                    setData(res.data.data);
+                    setLeadData(res.data.data);
                 } else {
                     setLoading(false);
                     setError('Data Fetch Failed');
                 }                
-                console.log(res);
             }, (error) => {
                 setLoading(false);
                 setError('Data Fetch Failed');
                 console.log(error);
             });
-    }, []);
+    }
+
+    const onLeadStatusChange = (id, status) => {
+        console.log(id, status);
+        ApiEndPoint
+            .post(
+                '/invited/status/'+ id,
+                {
+                    status: status
+                }
+            )
+            .then((res) => {
+                if(
+                    res.status === 200
+                    && 'success' in res.data
+                    && res.data.success === true
+                ) {
+                    refreshLeads(); //As lead status is successfully updated
+                } else {
+                    setError('Status Change Failed');
+                }                
+            }, (error) => {
+                setError('Status Change Failed');
+            });
+    }
 
     if(error !== '') {
         return(
@@ -44,7 +74,7 @@ const Invited = (props) => {
                 && error === ''
             ) 
             ? "Loading Invitations Please wait"
-            : <InvitedJobCards jobList={data} />
+            : <InvitedLeadCards leadList={leadData} onLeadStatusChange={(id, status) => onLeadStatusChange(id, status)} />
             }
         </div>
     );

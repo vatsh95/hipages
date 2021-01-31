@@ -1,73 +1,40 @@
-
-CREATE TABLE `suburbs`
-(
-    `id` int
-(11) unsigned NOT NULL AUTO_INCREMENT,
-    `name` varchar
-(255) NOT NULL,
-    `postcode` varchar
-(4) NOT NULL,
-    PRIMARY KEY
-(`id`),
-    KEY `idx_suburbs_postcode`
-(`postcode`)
+CREATE TABLE `suburbs` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    `postcode` varchar(4) NOT NULL,
+    PRIMARY KEY (`id`),
+    KEY `idx_suburbs_postcode` (`postcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `categories`
-(
-    `id` int
-(11) unsigned NOT NULL AUTO_INCREMENT,
-    `name` varchar
-(255) NOT NULL,
-    `parent_category_id` int
-(11) unsigned NOT NULL DEFAULT '0',
-    PRIMARY KEY
-(`id`),
-    KEY `idx_categories_parent_category`
-(`parent_category_id`)
+CREATE TABLE `categories` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    `parent_category_id` int(11) unsigned NOT NULL DEFAULT '0',
+    PRIMARY KEY (`id`),
+    KEY `idx_categories_parent_category` (`parent_category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `jobs`
-(
-    `id` int
-(11) unsigned NOT NULL AUTO_INCREMENT,
-    `status` varchar
-(50) NOT NULL DEFAULT 'new',
-    `suburb_id` int
-(11) unsigned NOT NULL,
-    `category_id` int
-(11) unsigned NOT NULL,
-    `contact_name` varchar
-(255) NOT NULL,
-    `contact_phone` varchar
-(255) NOT NULL,
-    `contact_email` varchar
-(255) NOT NULL,
-    `price` int
-(3) unsigned NOT NULL,
+CREATE TABLE `jobs` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `status` varchar(50) NOT NULL DEFAULT 'new',
+    `suburb_id` int(11) unsigned NOT NULL,
+    `category_id` int(11) unsigned NOT NULL,
+    `contact_name` varchar(255) NOT NULL,
+    `contact_phone` varchar(255) NOT NULL,
+    `contact_email` varchar(255) NOT NULL,
+    `price` int(3) unsigned NOT NULL,
     `description` text NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' ON
-UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY
-(`id`),
-    KEY `idx_jobs_suburb`
-(`suburb_id`),
-    KEY `idx_jobs_category`
-(`category_id`),
-    CONSTRAINT `fk_jobs_suburb` FOREIGN KEY
-(`suburb_id`) REFERENCES `suburbs`
-(`id`),
-    CONSTRAINT `fk_jobs_category` FOREIGN KEY
-(`category_id`) REFERENCES `categories`
-(`id`)
+    `updated_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    KEY `idx_jobs_suburb` (`suburb_id`),
+    KEY `idx_jobs_category` (`category_id`),
+    CONSTRAINT `fk_jobs_suburb` FOREIGN KEY (`suburb_id`) REFERENCES `suburbs` (`id`),
+    CONSTRAINT `fk_jobs_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `suburbs`
-(`
-id`,
-`name
-`, `postcode`)
+(`id`, `name`, `postcode`)
 VALUES
 (1, 'Sydney', '2000'),
 (2, 'Bondi', '2026'),
@@ -77,10 +44,7 @@ VALUES
 ;
 
 INSERT INTO `categories`
-(`
-id`,
-`name
-`, `parent_category_id`)
+(`id`, `name`, `parent_category_id`)
 VALUES
 (1, 'Plumbing', 0),
 (2, 'Electrical', 0),
@@ -91,10 +55,7 @@ VALUES
 ;
 
 INSERT INTO `jobs`
-(`
-suburb_id`,
-`category_id
-`, `contact_name`, `contact_phone`, `contact_email`, `price`, `description`)
+(`suburb_id`, `category_id`, `contact_name`, `contact_phone`, `contact_email`, `price`, `description`)
 VALUES
 (1, 1, 'Luke Skywalker', '0412345678', 'luke@mailinator.com', 20, 'Integer aliquam pulvinar odio et convallis. Integer id tristique ex. Aenean scelerisque massa vel est sollicitudin vulputate. Suspendisse quis ex eu ligula elementum suscipit nec a est. Aliquam a gravida diam. Donec placerat magna posuere massa maximus vehicula. Cras nisl ipsum, fermentum nec odio in, ultricies dapibus risus. Vivamus neque.'),
 (2, 2, 'Darth Vader', '0422223333', 'darth@mailinator.com', 30, 'Praesent elit dui, blandit eget nisl sed, ornare pharetra urna. In cursus auctor tellus. Quisque ligula metus, viverra nec nibh ut, sagittis luctus tellus. Nulla egestas nibh ut diam vehicula, ut auctor lectus pharetra. Aliquam condimentum, erat eget vehicula eleifend, nulla risus consequat augue, quis convallis mi diam et dui.'),

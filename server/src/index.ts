@@ -6,7 +6,10 @@ var cors = require('cors');
 const server = express();
 const port = 8080;
 
-server.use(cors()); //allow cors for every browser for now TODO: Fix CORS for specific URL's in future...
+/**
+ * allow cors for every browser for now TODO: Fix CORS for specific URL's in future...
+ */
+server.use(cors());
 
 server.use(express.json());
 server.use('/api', indexRouter);
@@ -15,12 +18,16 @@ server.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });
 
-// catch 404 and forward to error handler
+/** 
+ * catch 404 and forward to error handler
+ */
 server.use(function (req, res, next) {
     next(createError(404));
 });
 
-// error handler
+/** 
+ * error handler
+*/
 server.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;

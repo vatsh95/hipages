@@ -8,6 +8,10 @@ body {
     margin:0;
     padding:0;
     background:#eee;
+    font-family: 'Lato', sans-serif;
+}
+button {
+    font-family: 'Lato', sans-serif;
 }
 
 *,
@@ -74,8 +78,6 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
 }
 
 nav{
@@ -110,5 +112,5 @@ nav ul li a {
     border-bottom:2px solid #bebebe;
 }
 nav ul li a.active { 
-  border-bottom:3px solid orange;
+  border-bottom:3px solid #FF9800;
 }
