@@ -17,6 +17,7 @@ And components are placed seperate for better re-usability (* though there weren
 ### TODO items for frontend (* if I had more time on this project)
 * Implement SASS properly with docker using node-sass and write cleaner CSS Code.
 * Implement proper REST API data fetch functions using Redux or some proper custom JS class based methods - Currently there is code repetition which can be removed and things can be written in neater/cleaner ways.
+* Add proper processing message when "Accept" or "Decline" buttons are clicked and restrict user click event on the clicked Lead Card until it is processed properly to communicate status change properly to the backend.
 * Button Clicks for "Accept" and "Decline" is tied to onClick with arrow function directly to Finish project quickly, It is fine for now but, this can slow down the application if this SPA is upgraded in future with lot of similar arrow function binds in different areas of SPA - it will need a proper code refactoring when this project expands.
 
 ## Backend
